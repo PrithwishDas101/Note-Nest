@@ -7,6 +7,7 @@ import Navbar from '../components/Navbar.jsx';
 import RateLimitedUI from '../components/RateLimitedUI.jsx';
 import NoteCard from '../components/NoteCard.jsx';
 import api from "../lib/axios.js"
+import NotesNotFound from '../components/NotesNotFound.jsx';
 
 const HomePage = () => {
 
@@ -48,10 +49,12 @@ const HomePage = () => {
           </div>
         )}
 
+        {notes.length === 0 && !rateLimited  && <NotesNotFound/>}
+
         {notes.length > 0 && !rateLimited && (
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {notes.map(note => (
-              <NoteCard key={note._id} note={note} />
+              <NoteCard key={note._id} note={note} setNotes={setNotes}/>
             ))}
           </div>
         )}
