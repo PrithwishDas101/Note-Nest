@@ -2,7 +2,7 @@ import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import { ArrowLeftIcon } from "lucide-react"
 import toast from "react-hot-toast";
-import axios from "axios";
+import api from "../lib/axios.js";
 
 const CreatePage = () => {
 
@@ -15,22 +15,35 @@ const CreatePage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim() || !content.trim()) {
+    const cleanTitle = title.trim();
+    const cleanContent = content.trim();
+
+    if (!cleanTitle || !cleanContent) {
       toast.error("All fields are required!!");
       return;
     }
 
     setLoading(true);
+
     try {
-      await axios.post("http://localhost:5001/api/notes", {
-        title,
-        content
+      await api.post("/notes", {
+        title: cleanTitle,
+        content: cleanContent,
       });
+
       toast.success("Note created succesfully!");
       navigate("/")
     } catch (error) {
       console.log("Error creating note", error)
-      toast.error("Failed to create note!")
+
+      if (error.response?.status === 429) {
+        toast.error("Slow down! You are creating notes too fast", {
+          duration: 4000,
+          icon: "🩻"
+        })
+      } else {
+        toast.error("Failed to create note!")
+      }
     }
     finally {
       setLoading(false);
@@ -58,7 +71,7 @@ const CreatePage = () => {
                   <input
                     type="text"
                     placeholder="Note Title"
-                    className="input input-bordered caret-slate-500"
+                    className="input input-bordered caret-primary focus:outline-none focus:ring-2 focus:ring-slate-950"
                     value={title}
                     onChange={(e) => setTitle(e.target.value)} />
                 </div>
@@ -69,8 +82,7 @@ const CreatePage = () => {
                   </label>
                   <textarea
                     placeholder="Write your thought..."
-                    className="textarea textarea-bordered h-36
-                    caret-slate-600"
+                    className="textarea textarea-bordered caret-base-content h-36 focus:outline-none focus:ring-2 focus:ring-slate-950"
                     value={content}
                     onChange={(e) => setContent(e.target.value)} />
                 </div>
