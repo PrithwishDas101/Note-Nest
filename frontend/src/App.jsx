@@ -5,12 +5,16 @@ import NoteDetailPage from "./pages/NoteDetailPage.jsx";
 
 const App = () => {
   return (
-    <div data-theme="forest" className="min-h-screen bg-base-100">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/create" element={<CreatePage />} />
-        <Route path="/note/:id" element={<NoteDetailPage />} />
-      </Routes>
+    <div className="relative h-screen w-full overflow-hidden">
+
+      <div data-theme="forest" className="relative z-10 h-full w-full">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/create" element={<CreatePage />} />
+          <Route path="/note/:id" element={<NoteDetailPage />} />
+        </Routes>
+      </div>
+
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { NotebookPen, PlusIcon } from 'lucide-react'
 const Navbar = () => {
     return (
         <>
-            <header className='border-b border-base-content/10 bg-base-100'>
+            <header className='border-b border-base-content/10 bg-base-200'>
                 <div className='mx-auto max-w-6xl px-4 py-4'>
                     <div className='flex items-center justify-between'>
                         <div className='flex items-center gap-2 cursor-auto'>
