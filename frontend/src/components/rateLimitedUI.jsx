@@ -27,6 +27,6 @@ const RateLimitedUI = () => {
             </div>
         </div>
     );
-};
+}
 
 export default RateLimitedUI;
