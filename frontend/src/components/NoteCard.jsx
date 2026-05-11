@@ -13,8 +13,8 @@ const NoteCard = ({ note, setNotes }) => {
         if (!window.confirm("Delete this note? This action cannot be undone.")) return;
 
         try {
-            await api.delete(`/notes/${id}`);
-            setNotes((prev) => prev.filter(note => note._id !== id))
+            await api.delete(`/notes/${id}`); // deleting the note from the database
+            setNotes((prev) => prev.filter(note => note._id !== id)) // deleting the note from the user ui
             toast.success("Note deleted successfully!")
         } catch (error) {
             console.log("Error while deleting note", error)
