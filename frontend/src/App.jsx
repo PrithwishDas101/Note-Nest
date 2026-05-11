@@ -5,7 +5,7 @@ import NoteDetailPage from "./pages/NoteDetailPage.jsx";
 
 const App = () => {
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="relative min-h-screen w-full overflow-x-hidden scroll-smooth">
 
       <div data-theme="forest" className="relative z-10 h-full w-full">
         <Routes>
