@@ -78,9 +78,12 @@ The project was built to practice and demonstrate practical full-stack developme
 
 # Screenshot
 
-Home Page: ![alt text](<Note Nest Home Page.png>)
-Create Notes Page: ![alt text](<Note Nest Create Page.png>)
-Note Details Page: ![alt text](<Note Nest Note Details Page.png>)
+Home Page: <img width="1900" height="756" alt="Note Nest Home Page" src="https://github.com/user-attachments/assets/3150fff5-f601-466f-87ab-2f936d3e6369" />
+
+Create Notes Page: <img width="1919" height="884" alt="Note Nest Create Page" src="https://github.com/user-attachments/assets/9d20347a-bfb8-48a1-a085-d0d9bedd5fd5" />
+
+Note Details Page: <img width="1919" height="884" alt="Note Nest Note Detail Page" src="https://github.com/user-attachments/assets/ee072df8-1fbe-4104-8d59-3706fd3a3802" />
+
 ---
 
 # Live Demo
