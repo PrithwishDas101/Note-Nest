@@ -87,14 +87,14 @@ const LoginPage = () => {
           ) : (
             <div className="rounded-2xl border border-warning/20 bg-warning/5 p-4">
               <p className="text-sm font-semibold text-base-content">Supabase setup needed</p>
-              <p className="mt-2 text-sm leading-6 text-base-content/65">
+              <p className="mt-2 text-sm leading-6 text-base-content/60">
                 Add VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to the frontend environment, then enable Google in your Supabase Authentication settings.
               </p>
             </div>
           )}
         </div>
 
-        <p className="mt-6 flex items-center justify-center gap-2 text-xs text-base-content/45">
+        <p className="mt-6 flex items-center justify-center gap-2 text-xs text-base-content/50">
           <ShieldCheck className="size-4 text-primary" />
           Private by design. Forest theme, same NoteNest.
         </p>
