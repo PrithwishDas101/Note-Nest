@@ -1,264 +1,111 @@
 # NoteNest
 
-<div align="center">
+A full-stack notes app built with React, Vite, Tailwind CSS, DaisyUI, Express, and MongoDB.
 
-[![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react\&logoColor=white\&style=flat-square)](https://react.dev/)
-[![Node.js](https://img.shields.io/badge/Node.js-20.x-339933?logo=node.js\&logoColor=white\&style=flat-square)](https://nodejs.org/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Latest-13AA52?logo=mongodb\&logoColor=white\&style=flat-square)](https://www.mongodb.com/)
-[![Express.js](https://img.shields.io/badge/Express.js-4.x-000000?logo=express\&logoColor=white\&style=flat-square)](https://expressjs.com/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4?logo=tailwindcss\&logoColor=white\&style=flat-square)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat-square)](LICENSE)
+**A quieter place for your thoughts.**
 
-### A modern full-stack MERN notes application built with React, Express, MongoDB, and Tailwind CSS.
+[Live demo](https://note-nest-zqph.onrender.com/) · [Repository](https://github.com/PrithwishDas101/Note-Nest)
 
-[Live Demo](#-live-demo) • [Features](#-features) • [Installation](#-installation) • [API](#-api-endpoints) • [Deployment](#-deployment)
+## Overview
 
-</div>
+NoteNest keeps everyday ideas in a focused, responsive workspace. The interface keeps its original DaisyUI **forest** theme, with more considered spacing, readable typography, and subtle motion.
 
----
+## Features
 
-# Overview
+- Create, edit, and delete notes
+- Search note titles and content as you type
+- Pin important notes and filter to pinned notes
+- Sort by recently updated, recently created, or title
+- Responsive notes grid and writing-focused editor
+- Clear loading, empty, error, and rate-limit states
+- Toast feedback for save, pin, and delete actions
+- Keyboard-visible focus states and reduced-motion support
+- REST API backed by MongoDB and Mongoose
 
-**NoteNest** is a responsive note-taking application focused on simplicity, speed, and clean UI design.
+## Tech stack
 
-Users can create, edit, delete, and manage notes through a modern card-based interface with responsive layouts, smooth interactions, toast notifications, loading states, and graceful rate-limit handling.
+**Frontend:** React, React Router, Vite, Tailwind CSS, DaisyUI, Axios, React Hot Toast, Lucide React
 
-The project was built to practice and demonstrate practical full-stack development concepts including:
+**Backend:** Node.js, Express, MongoDB, Mongoose
 
-* REST API design
-* CRUD operations
-* MongoDB integration
-* State management in React
-* Deployment workflows
-* API error handling
-* Responsive UI design
+## Project structure
 
----
-
-# Features
-
-* Create, edit, and delete notes
-* Responsive layout for desktop and mobile
-* Toast notifications for user actions
-* Dedicated rate-limit handling UI
-* Smooth hover effects and transitions
-* Loading and empty states
-* Forest-themed UI using DaisyUI
-* Reusable React component architecture
-* RESTful API integration using Axios
-
----
-
-# Tech Stack
-
-## Frontend
-
-* React
-* React Router DOM
-* Tailwind CSS
-* DaisyUI
-* Axios
-* React Hot Toast
-* Lucide React Icons
-* Vite
-
-## Backend
-
-* Node.js
-* Express.js
-* MongoDB
-* Mongoose
-
-## Deployment
-
-* Render Static Site (Frontend)
-* Render Web Service (Backend)
-
----
-
-# Screenshot
-
-Home Page: <img width="1900" height="756" alt="Note Nest Home Page" src="https://github.com/user-attachments/assets/3150fff5-f601-466f-87ab-2f936d3e6369" />
-
-Create Notes Page: <img width="1919" height="884" alt="Note Nest Create Page" src="https://github.com/user-attachments/assets/9d20347a-bfb8-48a1-a085-d0d9bedd5fd5" />
-
-Note Details Page: <img width="1919" height="884" alt="Note Nest Note Detail Page" src="https://github.com/user-attachments/assets/ee072df8-1fbe-4104-8d59-3706fd3a3802" />
-
----
-
-# Live Demo
-
-https://note-nest-zqph.onrender.com/
-
----
-
-# Project Structure
-
-```bash
-NoteNest/
-│
+\`\`\`text
+Note-Nest/
 ├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── lib/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   │
-│   └── package.json
-│
-├── backend/
-│   ├── src/
-│   │   ├── config/
-│   │   ├── controllers/
-│   │   ├── middleware/
-│   │   ├── models/
-│   │   ├── routes/
-│   │   └── server.js
-│   │
-│   └── package.json
-│
-└── README.md
-```
+│   └── src/
+│       ├── components/
+│       ├── lib/
+│       ├── pages/
+│       ├── App.jsx
+│       └── main.jsx
+└── backend/
+    └── src/
+        ├── config/
+        ├── controllers/
+        ├── middleware/
+        ├── models/
+        ├── routes/
+        └── server.js
+\`\`\`
 
----
+## Run locally
 
-# Installation
+Requirements: Node.js, npm, and a MongoDB connection string.
 
-## Clone Repository
+### 1. Clone the repository
 
-```bash
-git clone https://github.com/your-username/NoteNest.git
-cd NoteNest
-```
+\`\`\`bash
+git clone https://github.com/PrithwishDas101/Note-Nest.git
+cd Note-Nest
+\`\`\`
 
----
+### 2. Start the backend
 
-## Backend Setup
-
-```bash
+\`\`\`bash
 cd backend
 npm install
-```
+\`\`\`
 
-Create a `.env` file:
+Create \`backend/.env\`:
 
-```env
+\`\`\`env
 MONGODB_URI=your_mongodb_connection_string
 PORT=5001
-FRONTEND_URL=http://localhost:5173
-```
+\`\`\`
 
-Run backend server:
+Start the backend using the script available in \`backend/package.json\` (for example, \`npm run dev\` if configured).
 
-```bash
-npm run dev
-```
+### 3. Start the frontend
 
----
+In a second terminal:
 
-## Frontend Setup
-
-```bash
+\`\`\`bash
 cd frontend
 npm install
 npm run dev
-```
+\`\`\`
 
-Create a `.env` file:
+The Vite development server runs at \`http://localhost:5173\` by default. In development, the frontend API client connects to \`http://localhost:5001/api\`.
 
-```env
-VITE_API_URL=http://localhost:5001/api
-```
+## API endpoints
 
----
+| Method | Endpoint | Purpose |
+| --- | --- | --- |
+| GET | \`/api/notes\` | List notes |
+| GET | \`/api/notes/:id\` | Get one note |
+| POST | \`/api/notes\` | Create a note |
+| PUT | \`/api/notes/:id\` | Update title, content, or pinned state |
+| DELETE | \`/api/notes/:id\` | Delete a note |
 
-# API Endpoints
+## Design notes
 
-| Method | Endpoint         | Description       |
-| ------ | ---------------- | ----------------- |
-| GET    | `/api/notes`     | Fetch all notes   |
-| GET    | `/api/notes/:id` | Fetch single note |
-| POST   | `/api/notes`     | Create new note   |
-| PUT    | `/api/notes/:id` | Update note       |
-| DELETE | `/api/notes/:id` | Delete note       |
+The UI keeps the existing forest palette and DaisyUI theme. The refresh focuses on hierarchy, spacing, touch-friendly controls, restrained hover transitions, clear feedback, and honoring the user's reduced-motion preference.
 
----
+## License
 
-# Deployment
+MIT
 
-## Frontend (Render Static Site)
+## Author
 
-### Build Command
-
-```bash
-npm install && npm run build
-```
-
-### Publish Directory
-
-```bash
-dist
-```
-
----
-
-## Backend (Render Web Service)
-
-### Start Command
-
-```bash
-npm start
-```
-
----
-
-# Challenges Faced
-
-During development and deployment, several practical issues were solved:
-
-* React routing and navigation flow
-* API state synchronization after deletion
-* Render deployment configuration
-* Linux file-name case sensitivity
-* Axios production base URL handling
-* Layout overflow and scroll issues
-* Responsive grid behavior
-* Error handling for invalid API responses
-
-These debugging experiences helped strengthen understanding of real-world full-stack workflows.
-
----
-
-# Future Improvements
-
-* User authentication
-* Search functionality
-* Pinned notes
-* Markdown support
-* Categories and tags
-* Theme switching
-* Rich text editor
-* Note archiving
-
----
-
-# License
-
-This project is licensed under the MIT License.
-
----
-
-# Author
-
-**Prithwish Das**
-
-* GitHub: https://github.com/PrithwishDas101
-
----
-
-<div align="center">
-
-Made using the MERN Stack
-
-</div>
+**Prithwish Das** · [GitHub](https://github.com/PrithwishDas101)
