@@ -65,7 +65,7 @@ const LoginPage = () => {
                 type="button"
                 onClick={handleGoogleSignIn}
                 disabled={signingIn}
-                className="flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-base-content/15 bg-base-100 px-4 text-sm font-semibold text-base-content shadow-sm transition-colors hover:border-primary/40 hover:bg-base-content/5 disabled:cursor-wait disabled:opacity-60"
+                className="flex min-h-12 w-full items-center justify-center gap-3 rounded-xl border border-base-content/20 bg-base-100 px-4 text-sm font-semibold text-base-content shadow-sm transition-colors hover:border-primary/40 hover:bg-base-content/5 disabled:cursor-wait disabled:opacity-60"
               >
                 {signingIn ? (
                   <span className="loading loading-spinner loading-sm text-primary" />
