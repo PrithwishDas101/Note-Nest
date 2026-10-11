@@ -19,7 +19,7 @@ const rateLimiter = (req, res, next) => {
   totalRequests += 1;
 
   // Periodically remove expired entries so the map stays bounded over time.
-  if (totalRequests % CLEANUP_INTERVAL === 0 || requests.size > 5000) {
+  if (totalRequests % CLEANUP_INTERVAL === 0) {
     for (const [ip, bucket] of requests) {
       if (now >= bucket.resetAt) {
         requests.delete(ip);
