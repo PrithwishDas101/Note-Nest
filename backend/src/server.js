@@ -6,7 +6,6 @@ import { fileURLToPath } from "url";
 
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
-import rateLimiter from "./middleware/rateLimiter.js";
 
 dotenv.config({ quiet: true });
 
@@ -25,9 +24,12 @@ if (process.env.NODE_ENV !== "production") {
 
 app.use(express.json());
 
-// Only rate-limit API requests; the frontend should remain available if
-// the external Upstash service is temporarily unavailable.
-app.use("/api", rateLimiter);
+// Render terminates TLS at its proxy; trust the first proxy hop so req.ip
+// identifies the client for the in-memory API rate limiter.
+if (process.env.NODE_ENV === "production") {
+  app.set("trust proxy", 1);
+}
+app.use("/api", (await import("./middleware/rateLimiter.js")).default);
 app.use("/api/notes", notesRoutes);
 
 if (process.env.NODE_ENV === "production") {
