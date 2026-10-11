@@ -73,7 +73,7 @@ const HomePage = () => {
                 Your personal space
               </p>
               <h1 className="text-4xl font-semibold leading-[1.05] tracking-[-0.065em] text-base-content sm:text-5xl lg:text-6xl">
-                Thoughts, <span className="text-base-content/45">kept close.</span>
+                Thoughts, <span className="text-base-content/50">kept close.</span>
               </h1>
               <p className="mt-4 max-w-lg text-sm leading-6 text-base-content/60 sm:text-base">
                 A little room for the ideas you don’t want to lose.
@@ -105,8 +105,8 @@ const HomePage = () => {
             </label>
 
             <div className="flex flex-wrap items-center gap-2">
-              <label className="relative flex min-h-11 flex-1 items-center gap-2 rounded-xl border border-base-content/10 px-3 text-sm text-base-content/65 sm:flex-none">
-                <SlidersHorizontal className="size-4 shrink-0 text-base-content/45" />
+              <label className="relative flex min-h-11 flex-1 items-center gap-2 rounded-xl border border-base-content/10 px-3 text-sm text-base-content/60 sm:flex-none">
+                <SlidersHorizontal className="size-4 shrink-0 text-base-content/50" />
                 <select
                   value={sortBy}
                   onChange={(event) => setSortBy(event.target.value)}
