@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate, useLocation, Link } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { NotebookPen, ShieldCheck, LockKeyhole, Chrome, Github, Mail, Eye, EyeOff, ArrowLeft } from "lucide-react";
 import toast from "react-hot-toast";
 import { useAuth } from "../context/AuthContext.jsx";
