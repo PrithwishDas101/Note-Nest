@@ -1,47 +1,96 @@
-import { PenSquareIcon, Trash2Icon } from 'lucide-react';
-import { Link } from 'react-router-dom'
-import { formatDate } from '../lib/utills.js';
-import api from '../lib/axios.js'
-import toast from 'react-hot-toast';
+import { Link } from "react-router-dom";
+import { Pin, PinOff, Trash2, ArrowUpRight } from "lucide-react";
+import { formatDate } from "../lib/utills.js";
+import api from "../lib/axios.js";
+import toast from "react-hot-toast";
 
 const NoteCard = ({ note, setNotes }) => {
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
 
-    const handleDelete = async (e, id) => {
-        e.preventDefault();
-        e.stopPropagation();
+    if (!window.confirm("Delete this note? This action cannot be undone.")) return;
 
-        if (!window.confirm("Delete this note? This action cannot be undone.")) return;
-
-        try {
-            await api.delete(`/notes/${id}`); // deleting the note from the database
-            setNotes((prev) => prev.filter(note => note._id !== id)) // deleting the note from the user ui
-            toast.success("Note deleted successfully!")
-        } catch (error) {
-            console.log("Error while deleting note", error)
-            toast.error("Note deletion failed!")
-        }
+    try {
+      await api.delete("/notes/" + note._id);
+      setNotes((current) => current.filter((item) => item._id !== note._id));
+      toast.success("Note deleted");
+    } catch (error) {
+      toast.error(error.response?.status === 429 ? "Too many requests. Try again shortly." : "Couldn't delete this note.");
     }
+  };
 
-    return <Link to={`/note/${note._id}`}
-        className='card bg-base-200 hover:shadow-lg transition-all duration-200 border-t-4 border-solid border-[#037449]'>
-        <div className='card-body'>
-            <h3 className='card-title  text-base-content'>{note.title}</h3>
-            <p className='text-base-content/50 line-clamp-3'>{note.content}</p>
-            <div className='card-actions justify-between items-center mt-4'>
-                <span className='text-sm text-base-content/60'>
-                    {formatDate(new Date(note.createdAt))}
-                </span>
-                <div className='flex items-center gap-1'>
-                    < PenSquareIcon className='size-4' />
-                    {/* Delete Button */}
-                    <button className='btn btn-ghost btn-xs text-error' onClick={(e) => handleDelete(e, note._id)}>
-                        < Trash2Icon className='size-4' />
-                    </button>
-                </div>
-            </div>
+  const handlePin = async (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    try {
+      const response = await api.put("/notes/" + note._id, {
+        title: note.title,
+        content: note.content,
+        pinned: !note.pinned,
+      });
+      setNotes((current) =>
+        current.map((item) => item._id === note._id ? response.data : item)
+      );
+      toast.success(response.data.pinned ? "Note pinned" : "Note unpinned");
+    } catch (error) {
+      toast.error(error.response?.status === 429 ? "Too many requests. Try again shortly." : "Couldn't update this note.");
+    }
+  };
+
+  return (
+    <article className="note-card animate-fade-up flex min-h-[248px] flex-col rounded-2xl">
+      <Link
+        to={"/note/" + note._id}
+        className="flex flex-1 flex-col rounded-2xl p-5 focus-visible:outline-offset-[-4px] sm:p-6"
+        aria-label={"Open note: " + note.title}
+      >
+        <div className="mb-5 flex items-center justify-between gap-3">
+          <span className="inline-flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary/90">
+            <span className="size-1.5 rounded-full bg-primary" />
+            Note
+          </span>
+          <span className="text-xs text-base-content/45">{formatDate(new Date(note.updatedAt || note.createdAt))}</span>
         </div>
-    </Link>
 
-}
+        <h2 className="mb-2 line-clamp-2 break-words text-lg font-semibold leading-snug tracking-[-0.035em] text-base-content sm:text-xl">
+          {note.title}
+        </h2>
+        <p className="line-clamp-4 flex-1 whitespace-pre-wrap break-words text-sm leading-6 text-base-content/65">
+          {note.content}
+        </p>
+
+        <div className="mt-6 flex items-center justify-between border-t border-base-content/8 pt-4">
+          <span className="text-xs font-medium text-base-content/45">
+            {note.pinned ? "Pinned note" : "Open note"}
+          </span>
+          <ArrowUpRight className="size-4 text-base-content/40 transition-transform duration-200 group-hover:-translate-y-0.5" />
+        </div>
+      </Link>
+
+      <div className="flex items-center justify-end gap-1 px-4 pb-3 sm:px-5">
+        <button
+          type="button"
+          onClick={handlePin}
+          className="inline-flex size-9 items-center justify-center rounded-full text-base-content/55 transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-offset-2"
+          aria-label={note.pinned ? "Unpin note" : "Pin note"}
+          title={note.pinned ? "Unpin note" : "Pin note"}
+        >
+          {note.pinned ? <PinOff className="size-4" /> : <Pin className="size-4" />}
+        </button>
+        <button
+          type="button"
+          onClick={handleDelete}
+          className="inline-flex size-9 items-center justify-center rounded-full text-base-content/55 transition-colors hover:bg-error/10 hover:text-error focus-visible:outline-offset-2"
+          aria-label="Delete note"
+          title="Delete note"
+        >
+          <Trash2 className="size-4" />
+        </button>
+      </div>
+    </article>
+  );
+};
 
 export default NoteCard;
