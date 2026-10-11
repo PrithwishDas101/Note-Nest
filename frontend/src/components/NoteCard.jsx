@@ -51,18 +51,18 @@ const NoteCard = ({ note, setNotes }) => {
             <span className="size-1.5 rounded-full bg-primary" />
             Note
           </span>
-          <span className="text-xs text-base-content/45">{formatDate(new Date(note.updatedAt || note.createdAt))}</span>
+          <span className="text-xs text-base-content/50">{formatDate(new Date(note.updatedAt || note.createdAt))}</span>
         </div>
 
         <h2 className="mb-2 line-clamp-2 break-words text-lg font-semibold leading-snug tracking-[-0.035em] text-base-content sm:text-xl">
           {note.title}
         </h2>
-        <p className="line-clamp-4 flex-1 whitespace-pre-wrap break-words text-sm leading-6 text-base-content/65">
+        <p className="line-clamp-4 flex-1 whitespace-pre-wrap break-words text-sm leading-6 text-base-content/60">
           {note.content}
         </p>
 
         <div className="mt-6 flex items-center justify-between border-t border-base-content/10 pt-4">
-          <span className="text-xs font-medium text-base-content/45">
+          <span className="text-xs font-medium text-base-content/50">
             {note.pinned ? "Pinned note" : "Open note"}
           </span>
           <ArrowUpRight className="size-4 text-base-content/40 transition-transform duration-200 group-hover:-translate-y-0.5" />
@@ -73,7 +73,7 @@ const NoteCard = ({ note, setNotes }) => {
         <button
           type="button"
           onClick={handlePin}
-          className="inline-flex size-9 items-center justify-center rounded-full text-base-content/55 transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-offset-2"
+          className="inline-flex size-9 items-center justify-center rounded-full text-base-content/50 transition-colors hover:bg-primary/10 hover:text-primary focus-visible:outline-offset-2"
           aria-label={note.pinned ? "Unpin note" : "Pin note"}
           title={note.pinned ? "Unpin note" : "Pin note"}
         >
@@ -82,7 +82,7 @@ const NoteCard = ({ note, setNotes }) => {
         <button
           type="button"
           onClick={handleDelete}
-          className="inline-flex size-9 items-center justify-center rounded-full text-base-content/55 transition-colors hover:bg-error/10 hover:text-error focus-visible:outline-offset-2"
+          className="inline-flex size-9 items-center justify-center rounded-full text-base-content/50 transition-colors hover:bg-error/10 hover:text-error focus-visible:outline-offset-2"
           aria-label="Delete note"
           title="Delete note"
         >
