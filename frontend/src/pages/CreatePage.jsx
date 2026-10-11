@@ -60,7 +60,7 @@ const CreatePage = () => {
 
           <form onSubmit={handleSubmit} className="surface-panel overflow-hidden rounded-3xl">
             <div className="border-b border-base-content/10 px-5 py-4 sm:px-8">
-              <div className="flex items-center gap-2 text-xs text-base-content/45">
+              <div className="flex items-center gap-2 text-xs text-base-content/50">
                 <FileText className="size-4" />
                 Untitled draft
                 <span className="ml-auto">{content.length} characters</span>
@@ -98,7 +98,7 @@ const CreatePage = () => {
             </div>
 
             <div className="flex flex-col-reverse gap-3 border-t border-base-content/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-              <p className="text-xs text-base-content/45">Your note is saved when you choose Create note.</p>
+              <p className="text-xs text-base-content/50">Your note is saved when you choose Create note.</p>
               <div className="flex items-center justify-end gap-3">
                 <Link to="/" className="rounded-full px-4 py-2.5 text-sm font-medium text-base-content/60 transition-colors hover:bg-base-content/5">
                   Cancel
