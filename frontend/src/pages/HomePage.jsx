@@ -51,9 +51,9 @@ const HomePage = () => {
       })
       .sort((a, b) => {
         if (Boolean(a.pinned) !== Boolean(b.pinned)) return a.pinned ? -1 : 1;
+        if (sortBy === "title") return (a.title || "").localeCompare(b.title || "");
         const dateA = new Date(sortBy === "created" ? a.createdAt : (a.updatedAt || a.createdAt)).getTime();
         const dateB = new Date(sortBy === "created" ? b.createdAt : (b.updatedAt || b.createdAt)).getTime();
-        if (sortBy === "title") return (a.title || "").localeCompare(b.title || "");
         return dateB - dateA;
       });
   }, [notes, search, sortBy, showPinnedOnly]);
@@ -107,7 +107,6 @@ const HomePage = () => {
             <div className="flex flex-wrap items-center gap-2">
               <label className="relative flex min-h-11 flex-1 items-center gap-2 rounded-xl border border-base-content/10 px-3 text-sm text-base-content/65 sm:flex-none">
                 <SlidersHorizontal className="size-4 shrink-0 text-base-content/45" />
-                <span className="sr-only">Sort notes</span>
                 <select
                   value={sortBy}
                   onChange={(event) => setSortBy(event.target.value)}
@@ -159,7 +158,7 @@ const HomePage = () => {
             </section>
           )}
 
-          {!loading && !loadError && visibleNotes.length === 0 && (
+          {!loading && !loadError && !rateLimited && visibleNotes.length === 0 && (
             <NotesNotFound
               hasSearch={Boolean(search.trim() || showPinnedOnly)}
               onClearSearch={() => { setSearch(""); setShowPinnedOnly(false); }}
