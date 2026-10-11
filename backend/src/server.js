@@ -6,6 +6,7 @@ import { fileURLToPath } from "url";
 
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
+import rateLimiter from "./middleware/rateLimiter.js";
 
 dotenv.config({ quiet: true });
 
@@ -29,7 +30,7 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1);
 }
-app.use("/api", (await import("./middleware/rateLimiter.js")).default);
+app.use("/api", rateLimiter);
 app.use("/api/notes", notesRoutes);
 
 if (process.env.NODE_ENV === "production") {
