@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
 import rateLimiter from "./middleware/rateLimiter.js";
+import requireAuth from "./middleware/requireAuth.js";
 
 dotenv.config({ quiet: true });
 
@@ -16,26 +17,20 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const frontendDist = path.resolve(__dirname, "../../frontend/dist");
 
 if (process.env.NODE_ENV !== "production") {
-  app.use(
-    cors({
-      origin: "http://localhost:5173",
-    })
-  );
+  app.use(cors({ origin: "http://localhost:5173" }));
 }
 
 app.use(express.json());
 
-// Render terminates TLS at its proxy; trust the first proxy hop so req.ip
-// identifies the client for the in-memory API rate limiter.
 if (process.env.NODE_ENV === "production") {
   app.set("trust proxy", 1);
 }
+
 app.use("/api", rateLimiter);
-app.use("/api/notes", notesRoutes);
+app.use("/api/notes", requireAuth, notesRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(frontendDist));
-
   app.get("*", (req, res) => {
     res.sendFile(path.join(frontendDist, "index.html"));
   });
