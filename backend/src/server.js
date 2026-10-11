@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from "url";
 
 import notesRoutes from "./routes/notesRoutes.js";
 import { connectDB } from "./config/db.js";
@@ -11,7 +12,8 @@ dotenv.config({ quiet: true });
 
 const app = express();
 const PORT = process.env.PORT || 5001;
-const __dirname = path.resolve();
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const frontendDist = path.resolve(__dirname, "../../frontend/dist");
 
 if (process.env.NODE_ENV !== "production") {
   app.use(
@@ -23,23 +25,23 @@ if (process.env.NODE_ENV !== "production") {
 
 app.use(express.json());
 
-// Only rate-limit API requests; don't make the frontend shell and assets
-// depend on the external Upstash service being available.
+// Only rate-limit API requests; the frontend should remain available if
+// the external Upstash service is temporarily unavailable.
 app.use("/api", rateLimiter);
 app.use("/api/notes", notesRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../frontend/dist")));
+  app.use(express.static(frontendDist));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+    res.sendFile(path.join(frontendDist, "index.html"));
   });
 }
 
 connectDB()
   .then(() => {
     app.listen(PORT, () => {
-      console.log(\`Server started at PORT: \${PORT}\`);
+      console.log("Server started at PORT: " + PORT);
     });
   })
   .catch((error) => {
