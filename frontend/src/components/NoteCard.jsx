@@ -43,7 +43,7 @@ const NoteCard = ({ note, setNotes }) => {
     <article className="note-card animate-fade-up flex min-h-[248px] flex-col rounded-2xl">
       <Link
         to={"/note/" + note._id}
-        className="flex flex-1 flex-col rounded-2xl p-5 focus-visible:outline-offset-[-4px] sm:p-6"
+        className="group flex flex-1 flex-col rounded-2xl p-5 focus-visible:outline-offset-[-4px] sm:p-6"
         aria-label={"Open note: " + note.title}
       >
         <div className="mb-5 flex items-center justify-between gap-3">
@@ -61,7 +61,7 @@ const NoteCard = ({ note, setNotes }) => {
           {note.content}
         </p>
 
-        <div className="mt-6 flex items-center justify-between border-t border-base-content/8 pt-4">
+        <div className="mt-6 flex items-center justify-between border-t border-base-content/10 pt-4">
           <span className="text-xs font-medium text-base-content/45">
             {note.pinned ? "Pinned note" : "Open note"}
           </span>
