@@ -25,7 +25,7 @@ const NotesNotFound = ({ hasSearch = false, onClearSearch }) => {
         <button
           type="button"
           onClick={onClearSearch}
-          className="mt-7 rounded-full border border-base-content/15 px-5 py-2.5 text-sm font-medium transition-colors hover:border-primary/40 hover:bg-primary/5"
+          className="mt-7 rounded-full border border-base-content/20 px-5 py-2.5 text-sm font-medium transition-colors hover:border-primary/40 hover:bg-primary/5"
         >
           Clear search
         </button>
