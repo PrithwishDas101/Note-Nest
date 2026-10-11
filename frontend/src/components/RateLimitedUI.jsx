@@ -1,32 +1,23 @@
-import { ZapIcon, Clock3 } from "lucide-react";
+import { Zap, Clock3 } from "lucide-react";
 
-const RateLimitedUI = () => {
-    return (
-        <div className="max-w-6xl mx-auto px-4 py-8">
-            <div className="bg-primary/10 border border-primary/30 rounded-lg shadow-md">
-                <div className="flex flex-col md:flex-row items-center p-6">
-                    <div className="flex-shrink-0 bg-primary/20 p-4 rounded-full mb-4 md:mb-0 md:mr-6">
-                        <ZapIcon className="size-10 text-primary" />
-                    </div>
-
-                    <div className="flex-1 text-center md:text-left">
-                        <h3 className="text-lg font-semibold tracking-tight mb-2">
-                            Rate Limit Reached
-                        </h3>
-
-                        <p className="text-base-content mb-2">
-                            You've made too many requests in a short period. Please wait a moment.
-                        </p>
-
-                        <div className="flex items-center justify-center gap-2 text-sm text-base-content/70 md:justify-start">
-                            <Clock3 className="size-4" />
-                            <p>Try again in a few seconds for the best experience.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-}
+const RateLimitedUI = () => (
+  <div className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
+    <section role="status" className="flex flex-col gap-4 rounded-2xl border border-warning/20 bg-warning/5 p-5 sm:flex-row sm:items-center sm:p-6">
+      <span className="grid size-12 shrink-0 place-items-center rounded-2xl bg-warning/10 text-warning">
+        <Zap className="size-5" />
+      </span>
+      <div className="min-w-0 flex-1">
+        <h2 className="font-semibold tracking-tight text-base-content">A little pause</h2>
+        <p className="mt-1 text-sm leading-6 text-base-content/65">
+          Too many requests came in at once. Give it a moment, then try again.
+        </p>
+      </div>
+      <span className="inline-flex items-center gap-2 text-xs text-base-content/55 sm:shrink-0">
+        <Clock3 className="size-4" />
+        Temporary rate limit
+      </span>
+    </section>
+  </div>
+);
 
 export default RateLimitedUI;
